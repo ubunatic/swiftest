@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "swiftest",
-    platforms: [.macOS(.v13)],
+    // platforms: [.macOS(.v12), .macOS(.v13), .macOS(.v14)],
     products: [
         .library(name: "Swiftest",    targets: ["Swiftest"]),
         // .executable(name: "swiftest", targets: ["Cmd"]),
