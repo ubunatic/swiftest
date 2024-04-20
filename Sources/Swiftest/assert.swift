@@ -4,7 +4,6 @@ public enum Assertion: Error { case assertionFailed(String) }
 
 public func Assert(_ condition: Bool, _ message: String, file: StaticString = #file, line: UInt = #line) throws {
     if !condition {
-        let file = URL(fileURLWithPath: String(describing: file)).path()
         throw Assertion.assertionFailed("\(message) at \(file):\(line)")
     }
 }
