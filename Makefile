@@ -16,13 +16,13 @@ all: ⚙️ test build
 clean: ⚙️
 	rm -rf .build
 
-test: ⚙️ build
-	$(SWIFT) run swiftest
-	$(SWIFT) run TestMain
+test: ⚙️
+	$(SWIFT) run -c $(BUILD) TestMain
 
 build: ⚙️ $(SOURCES)
 	rm -f $(BINARY)
-	$(SWIFT) build -c $(BUILD) --disable-sandbox
+	$(SWIFT) build -c $(BUILD) --target TestSuites
+	$(SWIFT) build -c $(BUILD) --target $(NAME)
 
 release: BUILD=release
 release: ⚙️ build

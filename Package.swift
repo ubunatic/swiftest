@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.macOS(.v13)],
     products: [
         .library(name: "Swiftest",    targets: ["Swiftest"]),
-        .executable(name: "swiftest", targets: ["Cmd"]),
+        // .executable(name: "swiftest", targets: ["Cmd"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.1"),
