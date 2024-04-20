@@ -1,7 +1,6 @@
 .PHONY: ⚙️
 
-SDK          = $(shell ls -d /opt/homebrew/Cellar/swift/* | head -n 1)
-SWIFT        = $(shell find $(SDK) -name swift 2>/dev/null | head -n 1 || echo swift)
+SWIFT        = $(shell find /opt/homebrew/Cellar/swift/*/bin -name swift 2>/dev/null | head -n 1 || which swift)
 SOURCES      = $(shell find Sources -name '*.swift') Package.swift
 VERSION      = v0.0.1
 NAME         = Swiftest
