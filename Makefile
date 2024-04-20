@@ -1,6 +1,6 @@
 .PHONY: ⚙️
 
-SWIFT        = $(shell find /opt/homebrew/Cellar/swift/*/bin -name swift 2>/dev/null | head -n 1 || which swift)
+SWIFT       ?= $(shell find /opt/homebrew/Cellar/swift/*/bin -name swift 2>/dev/null | head -n 1)
 SOURCES      = $(shell find Sources -name '*.swift') Package.swift
 VERSION      = v0.0.1
 NAME         = Swiftest
