@@ -2,7 +2,7 @@
 
 SWIFT       ?= $(shell find /opt/homebrew/Cellar/swift/*/bin -name swift 2>/dev/null | head -n 1)
 SOURCES      = $(shell find Sources -name '*.swift') Package.swift
-VERSION      = v0.0.1
+VERSION      = v1.0.0
 NAME         = Swiftest
 DEBUG       ?=
 BUILD        = debug
