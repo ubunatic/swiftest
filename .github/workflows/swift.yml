@@ -17,8 +17,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Check Swift
-      run: which swift
-    - name: Build
-      run: make build
-    - name: Run tests
-      run: make test
+      run: |
+        echo "Checking Swift version"
+        swift -v
+        echo "Checking Homebrew"
+        which brew
+        echo "Checking System"
+        uname -a
+        echo "Build and Test"
+        make build test
