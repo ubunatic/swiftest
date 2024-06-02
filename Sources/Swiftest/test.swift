@@ -10,14 +10,40 @@ func bold_green(_ s: String) -> String { return esc(s, "1;32m") }
 func bold_white(_ s: String) -> String { return esc(s, "1;37m") }
 
 public typealias TestFunc = () throws -> Void
+public typealias NamedTest = (String, TestFunc)
+
+public protocol Testable {
+    func tests() -> [NamedTest]
+}
 
 // Suite is a base class for test classes to inherit from.
 // It provides an assert method that prints a message if the condition is false.
 // It also provides a run method that runs all the tests in the suite.
 open class Suite {
-    public init() {}
-    public init(slient: Bool = false) { self.slient = slient }
+    // default initializer, adds tests using the Testable protocol
+    public init() { addTests() }
 
+    // debug initializer, allows to run tests in silent mode and disable the Testable protocol
+    public init(slient: Bool = false, tests: [NamedTest] = []) {
+        self.slient = slient
+        self.tests = tests
+        self.addTests()
+    }
+
+    private func addTests() {
+        if let testableSelf = self as? Testable {
+            testableSelf.tests().forEach { self.add($0.0, $0.1) }
+        }
+        if self.tests.isEmpty {
+            print("\(bold("Warning")): \(type(of: self)) has no tests defined")
+            return
+        }
+        if debug {
+            print("Using \(tests.count) tests from \(type(of: self))")
+        }
+    }
+
+    public var debug = ProcessInfo.processInfo.environment["DEBUG"] != ""
     public var slient = false
     public var tests: [(String, TestFunc)] = []
     public var errors: [Int: (String, Error)] = [:]

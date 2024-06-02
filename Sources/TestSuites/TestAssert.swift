@@ -1,9 +1,10 @@
 import Swiftest
 
-public class TestAssert: Suite {
-    public override init() {
-        super.init()
-        self.add("testAssert", testAssert)
+public class TestAssert: Suite, Testable {
+    public func tests() -> [NamedTest] {
+        return [
+            ("testAssert", testAssert),
+        ]
     }
 
     func testAssert() throws {

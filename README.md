@@ -6,7 +6,7 @@ To use the Swiftest package, follow these steps:
 1. Add the package as dependency in your `Package.swift`:
    ```swift
    dependencies: [
-        .package(url: "https://github.com/ubunatic/swiftest.git", from: "1.0.0")
+        .package(url: "https://github.com/ubunatic/swiftest.git", from: "1.0.1")
    ]
    ```
 
@@ -28,7 +28,7 @@ To use the Swiftest package, follow these steps:
    func myTest() throws { try AssertEqual(1, 1, "1 == 1") }
 
    public class TestSuite: Suite {
-       public override init() {
+       public tests -> [NamedTest] {
            super.init()
            self.add("myTest", myTest)
        }

@@ -1,10 +1,11 @@
 import Foundation
 import Swiftest
 
-public class TestSuite: Suite {
-    public override init() {
-        super.init()
-        self.add("testSuite", testSuite)
+public class TestSuite: Suite, Testable {
+    public func tests() -> [NamedTest] {
+        return [
+            ("testSuite", testSuite),
+        ]
     }
 
     public func testSuite() throws {
@@ -12,8 +13,7 @@ public class TestSuite: Suite {
         func fail()   throws { try Assert(false, "SelfTest: must fail!") }
         func failEq() throws { try AssertEqual(1, 2, "fail on 1 != 2")}
 
-        let debug    = ProcessInfo.processInfo.environment["DEBUG"] != ""
-        let s = Suite(slient: !debug)
+        let s = Suite(slient: !debug) // will show a warning that no tests are defined
         s.add("test 1 == 1", ok)
         try! s.run()
         try Assert(s.errors.isEmpty, "errors.count: \(s.errors.count) must be 0")

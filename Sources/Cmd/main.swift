@@ -5,7 +5,7 @@ import ArgumentParser
 struct SwiftestCli: ParsableCommand {
     static let configuration = CommandConfiguration(
         abstract: "Swiftest is a unit testing framework for Swift",
-        version: "1.0.0",
+        version: "1.0.1",
         subcommands: [Run.self],
         defaultSubcommand: Run.self
     )
